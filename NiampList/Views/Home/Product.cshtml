@@ -1,0 +1,78 @@
+﻿@model IEnumerable<NiampList.Models.Product>
+
+@{
+    ViewBag.Title = "Product";
+}
+
+<h2>Product</h2>
+
+@if (TempData["InsertMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> @TempData["InsertMessage"]
+    </div>
+
+}
+
+@if (TempData["UpdateMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> @TempData["UpdateMessage"]
+    </div>
+
+}
+
+@if (TempData["DeleteMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> @TempData["DeleteMessage"]
+    </div>
+
+}
+
+
+<p>
+    @Html.ActionLink("Create New", "ProductCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th> Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                <button class="btn btn-outline-primary ">
+                    @Html.ActionLink("Update", "UpdateProduct", new { id = item.ProductId })
+                </button>
+                <button class="btn btn-outline-danger ">
+                    <!--Html.ActionLink("Details", "Details", new { id = item.ProductId }) -->
+                    @Html.ActionLink("Delete", "ProductDelete", new { id = item.ProductId })
+                </button>
+</td>
+        </tr>
+    }
+
+</table>

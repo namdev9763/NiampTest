@@ -1,0 +1,59 @@
+﻿@model IEnumerable<NiampList.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<!--<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryId)
+        </td>
+
+    </tr>
+}
+
+</table> -->
+<table class="table">
+    <tr>
+        <th>ProductId</th>
+        <th>ProductName</th>
+        <th>CategoryId</th>
+        <th>CategoryName</th>
+    </tr>
+
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.ProductId</td>
+            <td>@product.ProductName</td>
+            <td>@product.Category.CategoryId</td>
+            <td>@product.Category.CategoryName</td>
+        </tr>
+    }
+</table>
+
+<div class="pagination-container">
+    <h5>
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <a href="@Url.Action("Index", new { page = i })" class="@(i == ViewBag.CurrentPage ? "active" : "")">@i</a>
+        }
+    </h5>
+</div>
